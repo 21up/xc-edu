@@ -10,4 +10,5 @@ public class QueryPageRequest extends RequestData {
     private String pageName;
     private String pageAliase;
     private String templateId;
+    private String pageType;
 }

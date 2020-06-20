@@ -7,6 +7,14 @@
       </el-select>
       页面别名：
       <el-input v-model="params.pageAliase" style="width: 100px"></el-input>
+      页面名称：
+      <el-input v-model="params.pageName" style="width: 100px"></el-input>
+      <el-form-item label="页面类型">
+        <el-radio-group v-model="params.pageType">
+          <el-radio class="radio" label="0">静态</el-radio>
+          <el-radio class="radio" label="1">动态</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-button type="primary" v-on:click="query" size="small">查询</el-button>
       <router-link class="mui-tab-item" :to="{path:'/cms/page/add',query:{
       page:this.params.page,siteId:this.params.siteId}}">
@@ -53,7 +61,9 @@
           page: 1,
           size: 10,
           pageAliase: '',
-          siteId: ''
+          siteId: '',
+          pageName:'',
+          pageType:''
         }
       }
     },

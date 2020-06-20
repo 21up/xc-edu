@@ -41,7 +41,9 @@ public class CmsPageService {
         //条件匹配器
         //根据页面别名模糊查询
         ExampleMatcher exampleMatcher = ExampleMatcher.matching()
-                .withMatcher("pageAliase", ExampleMatcher.GenericPropertyMatchers.contains());
+                .withMatcher("pageAliase", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("pageName",ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("pageType",ExampleMatcher.GenericPropertyMatchers.exact());
         //条件值
         CmsPage cmsPage = new CmsPage();
         if (StringUtils.isNotEmpty(queryPageRequest.getSiteId())) {
@@ -49,6 +51,12 @@ public class CmsPageService {
         }
         if (StringUtils.isNotEmpty(queryPageRequest.getPageAliase())) {
             cmsPage.setPageAliase(queryPageRequest.getPageAliase());
+        }
+        if (StringUtils.isNotEmpty(queryPageRequest.getPageName())) {
+            cmsPage.setPageName(queryPageRequest.getPageName());
+        }
+        if (StringUtils.isNotEmpty(queryPageRequest.getPageType())) {
+            cmsPage.setPageType(queryPageRequest.getPageType());
         }
         //创建条件实例
         Example<CmsPage> example = Example.of(cmsPage, exampleMatcher);

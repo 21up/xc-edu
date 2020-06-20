@@ -27,6 +27,9 @@
       <el-form-item label="页面别名" prop="pageAliase">
         <el-input v-model="pageForm.pageAliase" auto-complete="off"></el-input>
       </el-form-item>
+      <el-form-item label="访问路径" prop="pageWebPath">
+        <el-input v-model="pageForm.pageWebPath" auto-complete="off"></el-input>
+      </el-form-item>
       <el-form-item label="物理路径" prop="pagePhysicalPath">
         <el-input v-model="pageForm.pagePhysicalPath" auto-complete="off"></el-input>
       </el-form-item>
