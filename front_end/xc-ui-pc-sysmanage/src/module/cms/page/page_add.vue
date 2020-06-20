@@ -105,17 +105,14 @@
               this.addLoading=true;
               cmsApi.page_add(this.pageForm).then((res)=>{
                 if (res.success){
-                  this.addLoading=false
                   this.$message({
                     message:'提交成功',
                     type:'success'
                   });
                   this.$refs['pageForm'].resetFields();
                 }else if (res.message){
-                  this.addLoading=false;
                   this.$message.error(res.message)
                 } else {
-                  this.addLoading=false;
                   this.$message.error('提交失败');
                 }
               })

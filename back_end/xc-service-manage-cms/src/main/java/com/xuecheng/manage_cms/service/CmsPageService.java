@@ -2,7 +2,10 @@ package com.xuecheng.manage_cms.service;
 
 import com.xuecheng.framework.domain.cms.CmsPage;
 import com.xuecheng.framework.domain.cms.request.QueryPageRequest;
+import com.xuecheng.framework.domain.cms.response.CmsCode;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
+import com.xuecheng.framework.exception.ExceptionCast;
+import com.xuecheng.framework.exception.ExceptionCatch;
 import com.xuecheng.framework.model.response.CommonCode;
 import com.xuecheng.framework.model.response.QueryResponseResult;
 import com.xuecheng.framework.model.response.QueryResult;
@@ -65,14 +68,14 @@ public class CmsPageService {
     public CmsPageResult add(CmsPage cmspage) {
         //查询页面是否已存在
         CmsPage one = cmsPageRepository.findByPageNameAndSiteIdAndPageWebPath(cmspage.getPageName(), cmspage.getSiteId(), cmspage.getPageWebPath());
-        if (one == null) {
-            //添加页面主键由spring data 自动生成
-            cmspage.setPageId(null);
-            cmsPageRepository.save(cmspage);
-            CmsPageResult cmsPageResult = new CmsPageResult(CommonCode.SUCCESS, cmspage);
-            return cmsPageResult;
+        if (one != null) {
+            ExceptionCast.cast(CmsCode.CMS_ADDPAGE_EXIST);
         }
-        return new CmsPageResult(CommonCode.FAIL, null);
+        //添加页面主键由spring data 自动生成
+        cmspage.setPageId(null);
+        cmsPageRepository.save(cmspage);
+        CmsPageResult cmsPageResult = new CmsPageResult(CommonCode.SUCCESS, cmspage);
+        return cmsPageResult;
     }
 
     public CmsPage findById(String id) {
@@ -86,7 +89,7 @@ public class CmsPageService {
     public CmsPageResult edit(String id, CmsPage cmsPage) {
         CmsPage one = this.findById(id);
         if (one != null) {
-            BeanUtils.copyProperties(cmsPage,one);
+            BeanUtils.copyProperties(cmsPage, one);
             one.setPageId(id);
             CmsPage save = cmsPageRepository.save(one);
             if (save != null) {
@@ -99,7 +102,7 @@ public class CmsPageService {
 
     public ResponseResult delete(String id) {
         CmsPage one = this.findById(id);
-        if (one!=null){
+        if (one != null) {
             cmsPageRepository.deleteById(id);
             return new ResponseResult(CommonCode.SUCCESS);
         }
