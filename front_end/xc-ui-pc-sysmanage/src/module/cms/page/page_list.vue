@@ -35,6 +35,7 @@
         <template slot-scope="page">
           <el-button size="small" type="text" @click="edit(page.row.pageId)">编辑</el-button>
           <el-button size="small" type="text" @click="del(page.row.pageId)">删除</el-button>
+          <el-button size="small" type="text" @click="preview(page.row.pageId)">页面预览</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -114,6 +115,9 @@
             }
           })
         })
+      },
+      preview:function (pageId) {
+        window.open("http://www.xuecheng.com/cms/preview/"+pageId)
       }
     }
   }
