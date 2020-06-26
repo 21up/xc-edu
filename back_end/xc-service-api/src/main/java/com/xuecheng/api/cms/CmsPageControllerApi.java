@@ -20,4 +20,6 @@ public interface CmsPageControllerApi {
     CmsPageResult edit(String id,CmsPage cmsPage);
     @ApiOperation("删除页面")
     ResponseResult delete(String id);
+    @ApiOperation("发布页面")
+    ResponseResult post(String pageId);
 }
