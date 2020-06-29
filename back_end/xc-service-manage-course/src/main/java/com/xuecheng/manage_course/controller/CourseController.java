@@ -23,7 +23,7 @@ public class CourseController implements CourseControllerApi {
     private CourseService courseService;
 
     @GetMapping("/teachplan/list/{courseId}")
-    public TeachplanNode findTeachplanList(String courseId) {
+    public TeachplanNode findTeachplanList(@PathVariable("courseId") String courseId) {
         return courseService.findTeachplanList(courseId);
     }
 
