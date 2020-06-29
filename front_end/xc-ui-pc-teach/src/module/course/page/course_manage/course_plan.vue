@@ -10,7 +10,7 @@
       :render-content="renderContent">
     </el-tree>
 
-    <el-dialog title="添加课程计划" :visible.sync="teachplayFormVisible" >
+    <el-dialog title="添加课程计划" :visible.sync="teachplayFormVisible">
 
       <el-form ref="teachplanForm"  :model="teachplanActive" label-width="140px" style="width:600px;" :rules="teachplanRules" >
         <el-form-item label="上级结点" >
@@ -148,6 +148,8 @@
                     this.$message.success("添加成功")
                     //刷新树
                     this.findTeachplan()
+                  //关闭窗口
+                  this.teachplayFormVisible=false;
                 }else{
                   this.$message.error(res.message)
                 }
