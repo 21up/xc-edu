@@ -57,4 +57,7 @@ export const findCourseView = courseId => {
 /*保存媒资信息*/
 export const savemedia = teachplanMedia => {
   return http.requestPost(apiUrl+'/course/savemedia',teachplanMedia);
+}/*根据id查询课程基本信息*/
+export const getCoursebaseById = courseId => {
+  return http.requestQuickGet(apiUrl+'/course/coursebase/'+courseId);
 }

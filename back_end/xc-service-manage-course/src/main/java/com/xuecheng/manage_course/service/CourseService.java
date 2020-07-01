@@ -7,6 +7,7 @@ import com.xuecheng.framework.domain.course.Teachplan;
 import com.xuecheng.framework.domain.course.ext.CourseInfo;
 import com.xuecheng.framework.domain.course.ext.TeachplanNode;
 import com.xuecheng.framework.domain.course.request.CourseListRequest;
+import com.xuecheng.framework.domain.course.response.AddCourseResult;
 import com.xuecheng.framework.domain.course.response.CourseCode;
 import com.xuecheng.framework.exception.ExceptionCast;
 import com.xuecheng.framework.model.response.CommonCode;
@@ -100,5 +101,19 @@ public class CourseService {
         }
         Teachplan teachplan = teachplanList.get(0);
         return teachplan.getId();
+    }
+
+    public AddCourseResult addCourseBase(CourseBase courseBase) {
+        CourseBase save = courseBaseRepository.save(courseBase);
+        AddCourseResult addCourseResult = new AddCourseResult(CommonCode.SUCCESS,save.getId());
+        return addCourseResult;
+    }
+
+    public CourseBase getCoursebaseById(String courseId) {
+        Optional<CourseBase> optional = courseBaseRepository.findById(courseId);
+        if (!optional.isPresent()){
+            ExceptionCast.cast(CourseCode.COURSE_NOT_EXSITS);
+        }
+        return optional.get();
     }
 }
