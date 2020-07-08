@@ -12,8 +12,10 @@ import com.xuecheng.framework.model.response.ResponseResult;
 import com.xuecheng.manage_course.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,7 +45,7 @@ public class CourseController implements CourseControllerApi {
 
     @Override
     @PostMapping("coursebase/add")
-    public AddCourseResult addCourseBase(@RequestBody CourseBase courseBase) {
+    public AddCourseResult addCourseBase(@Validated @RequestBody CourseBase courseBase) {
         return courseService.addCourseBase(courseBase);
     }
 

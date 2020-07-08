@@ -65,21 +65,7 @@
           st:'',
           description: ''
         },
-        courseRules: {
-          name: [
-            {required: true, message: '请输入课程名称', trigger: 'blur'}
-          ],
-          category: [
-            {required: true, message: '请选择课程分类', trigger: 'blur'}
-          ],
-          grade: [
-            {required: true, message: '请选择课程等级', trigger: 'blur'}
-          ],
-          studymodel: [
-            {required: true, message: '请选择学习模式', trigger: 'blur'}
-          ]
 
-        }
       }
     },
     methods: {
